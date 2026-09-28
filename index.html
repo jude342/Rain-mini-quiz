@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core Values Quiz 💗</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="floating-hearts" aria-hidden="true">
+  <span>♥</span><span>♡</span><span>♥</span><span>♡</span><span>♥</span><span>♡</span>
+</div>
+
+<main class="app">
+  <section id="startScreen" class="card start-card">
+    <div class="tiny">NCM 104 • Practice Quiz</div>
+    <h1>Core Values as a<br><span>Community Health Nurse</span></h1>
+    <p class="subtitle">A little study date before tomorrow's quiz. 📚</p>
+    <div class="love-note">
+      <span>💌</span>
+      <div>
+        <strong>For you</strong>
+        <p>Study hard, okay? I made this little quiz just for you. And yes… <b>I miss you.</b> 💗</p>
+      </div>
+    </div>
+    <div class="rules">
+      <div>✨ 15 questions</div>
+      <div>🧠 Based on your lesson</div>
+      <div>💗 Cute messages along the way</div>
+    </div>
+    <button id="startBtn" class="primary">Start the quiz 💕</button>
+    <p class="source">Based on: NURSING CORE VALUES AS A COMMUNITY HEALTH NURSE • NCM 104</p>
+  </section>
+
+  <section id="quizScreen" class="card hidden">
+    <div class="quiz-top">
+      <span id="questionNumber">Question 1 of 15</span>
+      <span id="scoreBadge">Score: 0</span>
+    </div>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="question-area">
+      <div id="heartTiny">♡</div>
+      <h2 id="question"></h2>
+      <div id="options"></div>
+    </div>
+    <div id="feedback" class="feedback hidden"></div>
+    <button id="nextBtn" class="primary hidden">Next question →</button>
+  </section>
+
+  <section id="resultScreen" class="card result-card hidden">
+    <div id="resultEmoji" class="result-emoji">💗</div>
+    <div class="tiny">Quiz complete</div>
+    <h1 id="resultTitle">You did it!</h1>
+    <div class="score-circle"><span id="finalScore">0/15</span></div>
+    <p id="resultMessage"></p>
+    <div class="love-note final-note">
+      <span>💌</span>
+      <div>
+        <strong>One last thing…</strong>
+        <p id="loveMessage">Even if the score isn't perfect, I'm proud of you for studying. And… I miss you. ❤️</p>
+      </div>
+    </div>
+    <div class="result-actions">
+      <button id="reviewBtn" class="secondary">Review answers</button>
+      <button id="retryBtn" class="primary">Try again 💕</button>
+    </div>
+  </section>
+
+  <section id="reviewScreen" class="card hidden">
+    <div class="quiz-top">
+      <span>Answer Review</span>
+      <span id="reviewScore"></span>
+    </div>
+    <div id="reviewList"></div>
+    <button id="backResultBtn" class="primary">Back to results</button>
+  </section>
+</main>
+
+<div id="toast" class="toast"></div>
+<script>
+const questionBank = [{"q": "Which set correctly lists the eight core values of a community health nurse in the lesson?", "options": ["Caring, Diversity, Integrity, Excellence, Human Dignity, Autonomy, Altruism, Social Justice", "Caring, Discipline, Leadership, Excellence, Privacy, Autonomy, Advocacy, Equality", "Compassion, Diversity, Integrity, Efficiency, Human Rights, Independence, Altruism, Justice", "Caring, Diversity, Honesty, Excellence, Human Dignity, Authority, Altruism, Social Justice"], "answer": 0, "explain": "The lesson identifies Caring, Diversity, Integrity, Excellence, Human Dignity, Autonomy, Altruism, and Social Justice as the eight core values."}, {"q": "According to the lesson, Community Health Nursing is primarily focused on:", "options": ["Public health", "Hospital administration", "Individual surgical care", "Medical equipment management"], "answer": 0, "explain": "The lesson describes Community Health Nursing as a nursing specialty focused on public health."}, {"q": "Which value is described as concern and consideration for the whole person and outreach to those who are vulnerable?", "options": ["Caring", "Diversity", "Integrity", "Autonomy"], "answer": 0, "explain": "Caring is described as concern and consideration for the whole person, commitment to the common good, and outreach to vulnerable people."}, {"q": "Which core value recognizes that people have many identities influenced by factors such as race, ethnicity, gender, age, physical abilities, and beliefs?", "options": ["Diversity", "Excellence", "Altruism", "Human Dignity"], "answer": 0, "explain": "Diversity addresses many identities and the differences that influence people and communities."}, {"q": "A culture of integrity is demonstrated through which combination?", "options": ["Open communication, ethical decision-making, and humility", "Competition, speed, and strict hierarchy", "Privacy, autonomy, and physical safety only", "Continuous growth, transformation, and innovation only"], "answer": 0, "explain": "The lesson specifically connects integrity with open communication, ethical decision-making, and humility."}, {"q": "Which core value reflects a commitment to continuous growth, improvement, and understanding?", "options": ["Excellence", "Caring", "Diversity", "Social Justice"], "answer": 0, "explain": "Excellence is described as a culture of continuous growth, improvement, and understanding."}, {"q": "In the health care environment, Human Dignity is especially focused on:", "options": ["Privacy, respect, and autonomy", "Speed, efficiency, and competition", "Leadership, advocacy, and innovation", "Technology, documentation, and scheduling"], "answer": 0, "explain": "The lesson says that in health care, human dignity is more focused on privacy, respect, and autonomy."}, {"q": "Professional autonomy means having:", "options": ["Authority to make decisions and freedom to act according to professional knowledge", "Freedom to ignore professional standards", "Authority to make decisions only when supervised", "Responsibility for every decision made by other nurses"], "answer": 0, "explain": "Professional autonomy is the authority to make decisions and freedom to act in accordance with one's professional knowledge base."}, {"q": "According to the lesson, altruism means:", "options": ["Concern for the welfare and wellbeing of others", "Making independent professional decisions", "Maintaining personal privacy", "Achieving continuous professional improvement"], "answer": 0, "explain": "The lesson defines altruism as concern for the welfare and wellbeing of others and connects it with advocacy."}, {"q": "Social justice implies:", "options": ["Fair and equitable distribution of benefits and burdens in society", "Equal outcomes in every situation regardless of circumstances", "Giving priority only to individual clients", "Allowing each person to make professional decisions"], "answer": 0, "explain": "The lesson states that social justice implies a fair and equitable distribution of benefits and burdens in society."}, {"q": "Which value is identified as the foundation of public health nursing?", "options": ["Social Justice", "Autonomy", "Excellence", "Diversity"], "answer": 0, "explain": "The lesson explicitly identifies social justice as a core nursing value and the foundation of public health nursing."}, {"q": "Which statement best describes the scope of community health nurses in the lesson?", "options": ["They care for individuals, families, and the entire community.", "They focus only on individual hospital patients.", "They care only for families and not individual clients.", "They focus only on public health policies and not clients."], "answer": 0, "explain": "The lesson says community health nurses cater to individual clients, family clients, and even an entire community."}, {"q": "A nurse advocates for the welfare of patients, other nurses, and health care providers. Which value is most directly demonstrated?", "options": ["Altruism", "Excellence", "Diversity", "Human Dignity"], "answer": 0, "explain": "The lesson connects altruism with concern and advocacy for the welfare of patients, nurses, and health care providers."}, {"q": "Which value involves embracing transformation while not tolerating the status quo and mediocrity?", "options": ["Excellence", "Integrity", "Caring", "Autonomy"], "answer": 0, "explain": "The lesson describes excellence as a culture where transformation is embraced and the status quo and mediocrity are not tolerated."}, {"q": "Which value is most directly connected to a person's sense of self-worth and self-respect?", "options": ["Human Dignity", "Diversity", "Altruism", "Integrity"], "answer": 0, "explain": "Human dignity can be thought of as an individual's sense of self-worth and self-respect."}];
+
+let quizQuestions = [];
+let current = 0;
+let score = 0;
+let answered = false;
+let userAnswers = [];
+
+const startScreen = document.getElementById("startScreen");
+const quizScreen = document.getElementById("quizScreen");
+const resultScreen = document.getElementById("resultScreen");
+const reviewScreen = document.getElementById("reviewScreen");
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const feedbackEl = document.getElementById("feedback");
+const nextBtn = document.getElementById("nextBtn");
+const progressBar = document.getElementById("progressBar");
+const questionNumber = document.getElementById("questionNumber");
+const scoreBadge = document.getElementById("scoreBadge");
+
+const sweetMessages = [
+  "You got this, pretty smart human. 💗",
+  "Okayyy, look at you studying. I'm proud of you. ✨",
+  "One question closer! Don't give up. 💕",
+  "I miss you, but I also want you to ace this. 🥹",
+  "Your brain is doing its thing. Keep going! 🧠💗",
+  "Study mode + a tiny bit of love. Perfect combo. 💌",
+  "Don't overthink it. You know more than you think. 🌷"
+];
+
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function buildQuiz() {
+  quizQuestions = questionBank.map(q => {
+    const options = q.options.map((label, i) => ({ label, original: i }));
+    const shuffled = shuffle(options);
+    return {
+      ...q,
+      options: shuffled,
+      correctOriginal: q.answer
+    };
+  });
+}
+
+function show(screen) {
+  [startScreen, quizScreen, resultScreen, reviewScreen].forEach(s => s.classList.add("hidden"));
+  screen.classList.remove("hidden");
+}
+
+function startQuiz() {
+  buildQuiz();
+  current = 0;
+  score = 0;
+  userAnswers = [];
+  show(quizScreen);
+  renderQuestion();
+}
+
+function renderQuestion() {
+  answered = false;
+  const q = quizQuestions[current];
+  questionNumber.textContent = `Question ${current + 1} of ${quizQuestions.length}`;
+  scoreBadge.textContent = `Score: ${score}`;
+  progressBar.style.width = `${(current / quizQuestions.length) * 100}%`;
+  questionEl.textContent = q.q;
+  optionsEl.innerHTML = "";
+  feedbackEl.classList.add("hidden");
+  nextBtn.classList.add("hidden");
+
+  q.options.forEach((opt, index) => {
+    const button = document.createElement("button");
+    button.className = "option";
+    button.innerHTML = `<span class="letter">${String.fromCharCode(65 + index)}</span><span>${escapeHtml(opt.label)}</span>`;
+    button.addEventListener("click", () => chooseAnswer(index, button));
+    optionsEl.appendChild(button);
+  });
+
+  if (current > 0 && current % 3 === 0) {
+    showToast(sweetMessages[Math.floor(Math.random() * sweetMessages.length)]);
+  }
+}
+
+function chooseAnswer(index, button) {
+  if (answered) return;
+  answered = true;
+
+  const q = quizQuestions[current];
+  const selected = q.options[index];
+  const correct = selected.original === q.correctOriginal;
+  userAnswers.push({ selected: index, correct });
+
+  document.querySelectorAll(".option").forEach(b => b.disabled = true);
+
+  if (correct) {
+    score++;
+    button.classList.add("correct");
+    feedbackEl.innerHTML = `<strong>Correct! 💗</strong><br>${escapeHtml(q.explain)}`;
+    feedbackEl.className = "feedback correct-feedback";
+    burstHearts();
+  } else {
+    button.classList.add("wrong");
+    const correctIndex = q.options.findIndex(o => o.original === q.correctOriginal);
+    document.querySelectorAll(".option")[correctIndex].classList.add("correct");
+    feedbackEl.innerHTML = `<strong>Not quite — you've got this. 🌷</strong><br>${escapeHtml(q.explain)}`;
+    feedbackEl.className = "feedback wrong-feedback";
+  }
+
+  scoreBadge.textContent = `Score: ${score}`;
+  progressBar.style.width = `${((current + 1) / quizQuestions.length) * 100}%`;
+  nextBtn.textContent = current === quizQuestions.length - 1 ? "See my results 💕" : "Next question →";
+  nextBtn.classList.remove("hidden");
+}
+
+function nextQuestion() {
+  if (current < quizQuestions.length - 1) {
+    current++;
+    renderQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  show(resultScreen);
+  const total = quizQuestions.length;
+  const percent = Math.round((score / total) * 100);
+  document.getElementById("finalScore").textContent = `${score}/${total}`;
+  document.getElementById("reviewScore").textContent = `${percent}%`;
+
+  let title, message, emoji, love;
+  if (percent >= 90) {
+    title = "Look at you! 🌟";
+    message = "You really studied! That's an amazing result.";
+    emoji = "🌟";
+    love = "Okay, genius. You deserve a little celebration. I miss you though. 💗";
+  } else if (percent >= 75) {
+    title = "That's really good! 💕";
+    message = "You have a strong grasp of the lesson. A little review can make you even more ready.";
+    emoji = "💖";
+    love = "I'm proud of you. Keep reviewing and you'll be even more confident tomorrow. 🌷";
+  } else if (percent >= 60) {
+    title = "You're getting there! 🌷";
+    message = "You already have a foundation. Review the missed concepts and try again.";
+    emoji = "🌷";
+    love = "No pressure. Take a breath, review, and come back stronger. I miss you. 💌";
+  } else {
+    title = "Let's do one more round. 🥹";
+    message = "This is practice, not a judgment. Use the review section, then try again.";
+    emoji = "💗";
+    love = "Don't be discouraged. You can learn this. One step at a time. ❤️";
+  }
+
+  document.getElementById("resultTitle").textContent = title;
+  document.getElementById("resultMessage").textContent = message;
+  document.getElementById("resultEmoji").textContent = emoji;
+  document.getElementById("loveMessage").textContent = love;
+}
+
+function showReview() {
+  show(reviewScreen);
+  const list = document.getElementById("reviewList");
+  list.innerHTML = "";
+  quizQuestions.forEach((q, i) => {
+    const answer = userAnswers[i];
+    const chosen = q.options[answer.selected];
+    const correct = q.options.find(o => o.original === q.correctOriginal);
+    const div = document.createElement("div");
+    div.className = `review-item ${answer.correct ? "review-correct" : "review-wrong"}`;
+    div.innerHTML = `
+      <div class="review-q"><span>${i + 1}</span>${escapeHtml(q.q)}</div>
+      <div class="review-answer">${answer.correct ? "✓" : "✕"} Your answer: ${escapeHtml(chosen.label)}</div>
+      ${answer.correct ? "" : `<div class="review-correct-answer">Correct answer: ${escapeHtml(correct.label)}</div>`}
+      <div class="review-explain">${escapeHtml(q.explain)}</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function retry() {
+  startQuiz();
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2600);
+}
+
+function burstHearts() {
+  for (let i = 0; i < 7; i++) {
+    const heart = document.createElement("span");
+    heart.className = "burst-heart";
+    heart.textContent = Math.random() > .5 ? "♥" : "♡";
+    heart.style.left = `${35 + Math.random() * 30}%`;
+    heart.style.top = `${35 + Math.random() * 25}%`;
+    heart.style.setProperty("--x", `${(Math.random() - .5) * 180}px`);
+    heart.style.setProperty("--y", `${-60 - Math.random() * 120}px`);
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+  }
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+  }[c]));
+}
+
+document.getElementById("startBtn").addEventListener("click", startQuiz);
+nextBtn.addEventListener("click", nextQuestion);
+document.getElementById("retryBtn").addEventListener("click", retry);
+document.getElementById("reviewBtn").addEventListener("click", showReview);
+document.getElementById("backResultBtn").addEventListener("click", () => show(resultScreen));
+</script>
+</body>
+</html>
