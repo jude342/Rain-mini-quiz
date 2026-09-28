@@ -15,18 +15,18 @@
   <section id="startScreen" class="card start-card">
     <div class="tiny">NCM 104 • Practice Quiz</div>
     <h1>Core Values as a<br><span>Community Health Nurse</span></h1>
-    <p class="subtitle">A little study date before tomorrow's quiz. 📚</p>
+    <p class="subtitle">Quiz ka muna para prepared ka bukas hehe</p>
     <div class="love-note">
       <span>💌</span>
       <div>
-        <strong>For you</strong>
-        <p>Study hard, okay? I made this little quiz just for you. And yes… <b>I miss you.</b> 💗</p>
+        <strong>For you po</strong>
+        <p>Study hard, okay? Para sayo to, I hope ma feel mo yung love ko while taking the quiz haha <b>I like you</b> 💗</p>
       </div>
     </div>
     <div class="rules">
       <div>✨ 15 questions</div>
-      <div>🧠 Based on your lesson</div>
-      <div>💗 Cute messages along the way</div>
+      <div>🧠 Based on your lesson po ito</div>
+      <div>💗</div>
     </div>
     <button id="startBtn" class="primary">Start the quiz 💕</button>
     <p class="source">Based on: NURSING CORE VALUES AS A COMMUNITY HEALTH NURSE • NCM 104</p>
@@ -57,7 +57,7 @@
       <span>💌</span>
       <div>
         <strong>One last thing…</strong>
-        <p id="loveMessage">Even if the score isn't perfect, I'm proud of you for studying. And… I miss you. ❤️</p>
+        <p id="loveMessage">Even if the score isn't perfect, proud parin ako sayo. So ganbatte(may pa japanese pa), pagbutihin mo lang po miss pretty. ❤️</p>
       </div>
     </div>
     <div class="result-actions">
@@ -99,13 +99,13 @@ const questionNumber = document.getElementById("questionNumber");
 const scoreBadge = document.getElementById("scoreBadge");
 
 const sweetMessages = [
-  "You got this, pretty smart human. 💗",
-  "Okayyy, look at you studying. I'm proud of you. ✨",
-  "One question closer! Don't give up. 💕",
-  "I miss you, but I also want you to ace this. 🥹",
-  "Your brain is doing its thing. Keep going! 🧠💗",
-  "Study mode + a tiny bit of love. Perfect combo. 💌",
-  "Don't overthink it. You know more than you think. 🌷"
+  "Kaya mo yan wag susuko, pretty smart human. 💗",
+  "Okayyy, look at you studying. I'm proud of you hehe. ✨",
+  "One question closer! Never give up hehe. 💕",
+  "I like you, but I want ko na mas galingan mo pa hehe",
+  "Your brain is doing its thing haha! 🧠💗",
+  "Study mode + baby love you hehe. 💌",
+  "Don't overthink it po. pakitandaan, ikaw po ay genius. 🌷"
 ];
 
 function shuffle(arr) {
@@ -217,24 +217,24 @@ function showResults() {
   let title, message, emoji, love;
   if (percent >= 90) {
     title = "Look at you! 🌟";
-    message = "You really studied! That's an amazing result.";
+    message = "Maganda na, matalino pa";
     emoji = "🌟";
-    love = "Okay, genius. You deserve a little celebration. I miss you though. 💗";
+    love = "Okay, genius. You deserve a little celebration. LOVE YOU FUTURE BABY KO haha. 💗";
   } else if (percent >= 75) {
     title = "That's really good! 💕";
-    message = "You have a strong grasp of the lesson. A little review can make you even more ready.";
+    message = "Review kapa unti, then pwede na!";
     emoji = "💖";
-    love = "I'm proud of you. Keep reviewing and you'll be even more confident tomorrow. 🌷";
+    love = "I'm proud of you. Review kalang, kasi baby naman kita. 🌷";
   } else if (percent >= 60) {
     title = "You're getting there! 🌷";
-    message = "You already have a foundation. Review the missed concepts and try again.";
+    message = "Okay lang yan, baby naman kita!";
     emoji = "🌷";
-    love = "No pressure. Take a breath, review, and come back stronger. I miss you. 💌";
+    love = "No pressure. LOVE YOU FUTURE BABY KO💌";
   } else {
     title = "Let's do one more round. 🥹";
-    message = "This is practice, not a judgment. Use the review section, then try again.";
+    message = "Practice pa po";
     emoji = "💗";
-    love = "Don't be discouraged. You can learn this. One step at a time. ❤️";
+    love = "Keep studying, you have Jude at your back hehe. LOVE YOU FUTURE BABY KO";
   }
 
   document.getElementById("resultTitle").textContent = title;
